@@ -1,0 +1,83 @@
+swagger: "2.0"
+info:
+  title: "Sample API"
+  description: "API for demonstrating Swagger with Flask"
+  version: "1.0.0"
+host: "192.168.0.84:5050"
+schemes:
+  - "http"
+paths:
+  /auth/login:
+    post:
+      summary: "User login"
+      description: "Login to the application"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User credentials"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              username:
+                type: "string"
+              password:
+                type: "string"
+      responses:
+        200:
+          description: "Successful login"
+        401:
+          description: "Invalid username or password"
+  /person/create:
+    post:
+      summary: "Create a person"
+      description: "Create a new person"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Person object"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+              cpf_cnpj:
+                type: "string"
+              email:
+                type: "string"
+              phone:
+                type: "string"
+              road:
+                type: "string"
+              state:
+                type: "string"
+              number:
+                type: "string"
+              neighborhood:
+                type: "string"
+              is_employee:
+                type: "boolean"
+              is_client:
+                type: "boolean"
+      security:
+        - Bearer: []
+      responses:
+        201:
+          description: "Person created"
+        400:
+          description: "Invalid input"
+securityDefinitions:
+  Bearer:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+    description: "JWT Authorization header using the Bearer scheme. Example: 'Authorization: Bearer {token}'"

@@ -1,5 +1,6 @@
 from aplications import db
 
+
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
@@ -13,8 +14,8 @@ class Person(db.Model):
     is_employee = db.Column(db.Boolean, default=False)
     is_client = db.Column(db.Boolean, default=False)
     active = db.Column(db.Boolean, default=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User', backref=db.backref('persons', lazy=True))
-    
+
     def __repr__(self):
         return f'<Person {self.name}>'

@@ -1,12 +1,22 @@
+from aplications.auth.instructions.user import IUser
+
+from flask_jwt_extended import create_access_token
+from datetime import timedelta
 import bcrypt
 
 
 class Login():
     def __init__(self):
-        pass
+        self.service_user = IUser()
 
-    def make_login(self):
-        pass
+    def make_login(self, username, password):
+        user = self.service_user.get_user_by_username(username)
+
+        if user and self.check_password(password, user.password):
+            access_token = create_access_token(
+                identity=user.id, expires_delta=timedelta(minutes=30))
+            return {"access": True, "access_token": f"Bearer {access_token}"}
+        return {"access": False, "access_token": None}
 
     def hash_password(self, password):
         salt = bcrypt.gensalt()
@@ -15,4 +25,9 @@ class Login():
         return hashed_password
 
     def check_password(self, password, hashed_password):
-        return bcrypt.checkpw(password.encode('utf-8'), hashed_password)
+        if isinstance(hashed_password, str):
+            hashed_password = hashed_password.encode('utf-8')
+
+            return bcrypt.checkpw(password.encode('utf-8'), hashed_password)
+
+        return False
