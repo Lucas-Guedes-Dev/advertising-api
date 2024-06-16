@@ -14,6 +14,7 @@ def create_app(config_name='default'):
     app.config.from_object(f'config.{config_name.capitalize()}Config')
 
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+    app.config['UPLOAD_FOLDER'] = 'uploads'
 
     JWTManager(app)
     Swagger(app, template_file='swagger.yaml')

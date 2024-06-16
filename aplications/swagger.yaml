@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
-  title: "Sample API"
-  description: "API for demonstrating Swagger with Flask"
+  title: "API de propagandas"
+  description: "API de documentação para propagandas"
   version: "1.0.0"
 host: "192.168.0.84:5050"
 schemes:
@@ -68,6 +68,10 @@ paths:
                 type: "boolean"
               is_client:
                 type: "boolean"
+              is_driver:
+                type: "boolean"
+              user_id:
+                type: "integer"
       security:
         - Bearer: []
       responses:
@@ -75,6 +79,42 @@ paths:
           description: "Person created"
         400:
           description: "Invalid input"
+  /advertising/create:
+    post:
+      summary: "Create an advertising"
+      description: "Create a new advertising"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Advertising object"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+              image:
+                type: "string"
+                format: "byte"
+              video_url:
+                type: "string"
+              person_id:
+                type: "integer"
+              active:
+                type: "boolean"
+      security:
+        - Bearer: []
+      responses:
+        201:
+          description: "Advertising created"
+        400:
+          description: "Invalid input"
+        404:
+          description: "not found"
 securityDefinitions:
   Bearer:
     type: "apiKey"

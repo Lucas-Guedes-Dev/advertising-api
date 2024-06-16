@@ -5,12 +5,12 @@ from datetime import timedelta
 import bcrypt
 
 
-class Login():
+class Login(IUser):
     def __init__(self):
-        self.service_user = IUser()
+        super().__init__()
 
     def make_login(self, username, password):
-        user = self.service_user.get_user_by_username(username)
+        user = self.get_user_by_username(username)
 
         if user and self.check_password(password, user.password):
             access_token = create_access_token(
