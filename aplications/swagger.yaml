@@ -32,6 +32,37 @@ paths:
           description: "Successful login"
         401:
           description: "Invalid username or password"
+  /auth/user/create:
+    post:
+      summary: "Create a user"
+      description: "Create a new user"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User object"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              username:
+                type: "string"
+              password:
+                type: "string"
+              is_admin:
+                type: "boolean"
+              active:
+                type: "boolean"
+      security:
+        - Bearer: []
+      responses:
+        201:
+          description: "User created"
+        400:
+          description: "Invalid input"
   /person/create:
     post:
       summary: "Create a person"
