@@ -17,7 +17,6 @@ class IUser():
         return User.query.all()
 
     def create_user(self, user_dict):
-        print(user_dict)
         new_user = User(
             username=user_dict.get('username'),
             password=user_dict['password'],

@@ -110,6 +110,73 @@ paths:
           description: "Person created"
         400:
           description: "Invalid input"
+  /person/list:
+    get:
+      summary: "List persons"
+      description: "Get a list of all persons"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "query"
+          name: "id"
+          type: "integer"
+          description: "Filter person by id"
+        - in: "query"
+          name: "is_client"
+          type: "boolean"
+          description: "Filter clients"
+        - in: "query"
+          name: "is_employee"
+          type: "boolean"
+          description: "Filter employees"
+        - in: "query"
+          name: "is_driver"
+          type: "boolean"
+          description: "Filter drivers"
+        - in: "query"
+          name: "cpf_cnpj"
+          type: "string"
+          description: "Filter persons by cpf or cnpj"
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                id:
+                  type: "integer"
+                nome:
+                  type: "string"
+                cpf:
+                  type: "string"
+                email:
+                  type: "string"
+                phone:
+                  type: "string"
+                road:
+                  type: "string"
+                state:
+                  type: "string"
+                number:
+                  type: "string"
+                neighborhood:
+                  type: "string"
+                is_employee:
+                  type: "boolean"
+                is_client:
+                  type: "boolean"
+                is_driver:
+                  type: "boolean"
+                active:
+                  type: "boolean"
+                user_id:
+                  type: "integer"
+        401:
+          description: "Unauthorized"
   /advertising/create:
     post:
       summary: "Create an advertising"
@@ -145,7 +212,7 @@ paths:
         400:
           description: "Invalid input"
         404:
-          description: "not found"
+          description: "Not found"
 securityDefinitions:
   Bearer:
     type: "apiKey"

@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from flasgger import Swagger
+from flask_cors import CORS
 import os
 
 db = SQLAlchemy()
@@ -18,6 +19,7 @@ def create_app(config_name='default'):
 
     JWTManager(app)
     Swagger(app, template_file='swagger.yaml')
+    CORS(app)
 
     db.init_app(app)
     migrate.init_app(app, db)

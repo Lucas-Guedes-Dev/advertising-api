@@ -10,6 +10,15 @@ class IPerson:
     def get_person_by_cpf(self, cpf):
         return Person.query.filter_by(cpf_cnpj=cpf).first()
 
+    def get_person_clients(self):
+        return Person.query.filter_by(is_client=True).all()
+
+    def get_person_employes(self):
+        return Person.query.filter_by(is_employee=True).all()
+
+    def get_person_drivers(self):
+        return Person.query.filter_by(is_driver=True).all()
+
     def get_all_persons(self):
         return Person.query.all()
 
