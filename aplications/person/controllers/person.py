@@ -36,6 +36,7 @@ class CPerson(IPerson):
 
     def create_object_json(self, person: Person):
         return {
+            'id': person.id,
             'nome': person.name,
             'cpf': person.cpf_cnpj,
             'email': person.email,
@@ -48,5 +49,6 @@ class CPerson(IPerson):
             'is_client': person.is_client,
             'is_driver': person.is_driver,
             'active': person.active,
+            'city': person.city,
             'user_id': person.user_id,
         }

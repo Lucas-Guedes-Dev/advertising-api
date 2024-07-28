@@ -22,6 +22,23 @@ class IPerson:
     def get_all_persons(self):
         return Person.query.all()
 
+    def update_person_by_id(self, id, person_dict):
+        person = Person.query.filter_by(id=id).first()
+
+        if not person:
+            raise ValueError("Person not found")
+
+        for key, value in person_dict.items():
+            if hasattr(person, key):
+                setattr(person, key, value)
+
+        try:
+            db.session.commit()
+            return True
+        except Exception as e:
+            db.session.rollback()
+            raise False
+
     def create_person(self, person_dict):
         user_id = None
 
@@ -38,6 +55,7 @@ class IPerson:
                 state=person_dict.get('state'),
                 number=person_dict.get('number'),
                 neighborhood=person_dict.get('neighborhood'),
+                city=person_dict.get('city'),
                 is_employee=person_dict.get('is_employee', False),
                 is_client=person_dict.get('is_client', False),
                 active=person_dict.get('active', True),

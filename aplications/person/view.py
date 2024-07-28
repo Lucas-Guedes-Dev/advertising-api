@@ -41,3 +41,16 @@ class Person(MethodView):
             filter_type, person_cpf_cnpj, person_id)
 
         return jsonify(person_list), 200
+
+    @jwt_required()
+    def put(self):
+        params = request.args.to_dict()
+        person_id = params.get('id')
+        data = request.get_json()
+        update_person = self.controller_person.update_person_by_id(
+            person_id, data)
+
+        if update_person:
+            return jsonify({'success': True}), 200
+        else:
+            return jsonify({'success': False}), 409

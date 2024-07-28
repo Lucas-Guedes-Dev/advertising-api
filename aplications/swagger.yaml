@@ -1,14 +1,23 @@
 swagger: "2.0"
 info:
-  title: "API de propagandas"
+  title: "API de Propagandas"
   description: "API de documentação para propagandas"
   version: "1.0.0"
 host: "192.168.0.84:5050"
 schemes:
   - "http"
+tags:
+  - name: "Auth"
+    description: "Endpoints de autenticação"
+  - name: "Person"
+    description: "Endpoints para gerenciamento de pessoas"
+  - name: "Advertising"
+    description: "Endpoints para gerenciamento de propagandas"
 paths:
   /auth/login:
     post:
+      tags:
+        - "Auth"
       summary: "User login"
       description: "Login to the application"
       consumes:
@@ -34,6 +43,8 @@ paths:
           description: "Invalid username or password"
   /auth/user/create:
     post:
+      tags:
+        - "Auth"
       summary: "Create a user"
       description: "Create a new user"
       consumes:
@@ -65,6 +76,8 @@ paths:
           description: "Invalid input"
   /person/create:
     post:
+      tags:
+        - "Person"
       summary: "Create a person"
       description: "Create a new person"
       consumes:
@@ -91,6 +104,8 @@ paths:
                 type: "string"
               state:
                 type: "string"
+              city:
+                type: "string"
               number:
                 type: "string"
               neighborhood:
@@ -112,6 +127,8 @@ paths:
           description: "Invalid input"
   /person/list:
     get:
+      tags:
+        - "Person"
       summary: "List persons"
       description: "Get a list of all persons"
       produces:
@@ -177,8 +194,68 @@ paths:
                   type: "integer"
         401:
           description: "Unauthorized"
+  /person/update/{person_id}:
+    put:
+      tags:
+        - "Person"
+      summary: "Update a person"
+      description: "Update a person's information"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "person_id"
+          description: "ID of the person to update"
+          required: true
+          type: "integer"
+        - in: "body"
+          name: "body"
+          description: "Person object with updated data"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+              cpf_cnpj:
+                type: "string"
+              email:
+                type: "string"
+              phone:
+                type: "string"
+              road:
+                type: "string"
+              state:
+                type: "string"
+              city:
+                type: "string"
+              number:
+                type: "string"
+              neighborhood:
+                type: "string"
+              is_employee:
+                type: "boolean"
+              is_client:
+                type: "boolean"
+              is_driver:
+                type: "boolean"
+              user_id:
+                type: "integer"
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: "Person updated"
+        400:
+          description: "Invalid input"
+        404:
+          description: "Person not found"
   /advertising/create:
     post:
+      tags:
+        - "Advertising"
       summary: "Create an advertising"
       description: "Create a new advertising"
       consumes:

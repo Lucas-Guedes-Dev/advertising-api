@@ -9,6 +9,7 @@ class Person(db.Model):
     phone = db.Column(db.String(25))
     road = db.Column(db.String(120))
     state = db.Column(db.String(60))
+    city = db.Column(db.String(60))
     number = db.Column(db.String(7))
     neighborhood = db.Column(db.String(60))
     is_employee = db.Column(db.Boolean, default=False)
