@@ -37,8 +37,8 @@ class CPerson(IPerson):
     def create_object_json(self, person: Person):
         return {
             'id': person.id,
-            'nome': person.name,
-            'cpf': person.cpf_cnpj,
+            'name': person.name,
+            'cpf_cnpj': person.cpf_cnpj,
             'email': person.email,
             'phone': person.phone,
             'road': person.road,

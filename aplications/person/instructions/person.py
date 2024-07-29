@@ -67,6 +67,7 @@ class IPerson:
             return {"success": True}
 
         except IntegrityError as e:
+            print(e)
             return {"success": False, "message": str(e)}
 
     def delete_person(self, person_id):
