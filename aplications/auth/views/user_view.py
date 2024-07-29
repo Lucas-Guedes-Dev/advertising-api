@@ -10,3 +10,8 @@ class UserView(MethodView):
     def post(self):
         data = request.get_json()
         return CUser().formating_create_user(data)
+
+    def get(self):
+        params = request.args.to_dict()
+
+        return CUser().get_user_with_param(params.get('id_user'), params.get('username'))

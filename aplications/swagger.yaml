@@ -74,6 +74,43 @@ paths:
           description: "User created"
         400:
           description: "Invalid input"
+  /auth/user/list:
+    get:
+      tags:
+        - "Auth"
+      summary: "List users"
+      description: "Get a list of all users"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "query"
+          name: "id_user"
+          type: "integer"
+          description: "Filter user by id"
+        - in: "query"
+          name: "username"
+          type: "string"
+          description: "Filter user by username"
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                id_user:
+                  type: "integer"
+                username:
+                  type: "string"
+                is_admin:
+                  type: "boolean"
+                active:
+                  type: "boolean"
+        401:
+          description: "Unauthorized"
   /person/create:
     post:
       tags:
