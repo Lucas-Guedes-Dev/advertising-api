@@ -17,6 +17,7 @@ class IAdvertising:
         try:
             new_advertising = Advertising(
                 name=advertising_dict.get('name'),
+                description=advertising_dict.get('description'),
                 image=advertising_dict.get('image'),
                 video_url=advertising_dict.get('video_url'),
                 person_id=advertising_dict.get('person_id'),

@@ -13,6 +13,7 @@ class Person(MethodView):
     @jwt_required()
     def post(self):
         data = request.get_json()
+        print(data)
         create_person = self.controller_person.create_person(data)
 
         if create_person['success']:

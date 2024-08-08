@@ -17,7 +17,6 @@ class CUser(IUser):
             return jsonify(create), 409
 
     def get_user_with_param(self, id_user, username):
-        print(id_user)
         if id_user and username:
             return jsonify({'message': 'Não é possivel filtrar com username e user_id na mesma requisição'}), 401
 
@@ -35,7 +34,6 @@ class CUser(IUser):
 
         for user in list_user:
             response_list.append(self.create_object_json(user))
-        print(response_list, 'ola')
 
         return jsonify(response_list), 200
 

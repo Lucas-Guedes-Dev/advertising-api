@@ -58,6 +58,7 @@ class IPerson:
                 city=person_dict.get('city'),
                 is_employee=person_dict.get('is_employee', False),
                 is_client=person_dict.get('is_client', False),
+                is_driver=person_dict.get('is_driver', False),
                 active=person_dict.get('active', True),
                 user_id=user_id
             )
@@ -67,7 +68,6 @@ class IPerson:
             return {"success": True}
 
         except IntegrityError as e:
-            print(e)
             return {"success": False, "message": str(e)}
 
     def delete_person(self, person_id):

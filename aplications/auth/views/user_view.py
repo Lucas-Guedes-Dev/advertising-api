@@ -13,5 +13,4 @@ class UserView(MethodView):
 
     def get(self):
         params = request.args.to_dict()
-
         return CUser().get_user_with_param(params.get('id_user'), params.get('username'))

@@ -3,7 +3,7 @@ info:
   title: "API de Propagandas"
   description: "API de documentação para propagandas"
   version: "1.0.0"
-host: "192.168.0.84:5050"
+host: "10.42.5.90:5050"
 schemes:
   - "http"
 tags:
@@ -309,6 +309,8 @@ paths:
             properties:
               name:
                 type: "string"
+              description:
+                type: "string"
               image:
                 type: "string"
                 format: "byte"
@@ -327,6 +329,50 @@ paths:
           description: "Invalid input"
         404:
           description: "Not found"
+  /advertising/list:
+    get:
+      tags:
+        - "Advertising"
+      summary: "List person details"
+      description: "Get detailed information of persons"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "query"
+          name: "name"
+          type: "string"
+          description: "Filter persons by name"
+        - in: "query"
+          name: "person_id"
+          type: "integer"
+          description: "Filter persons by ID"
+        - in: "query"
+          name: "active"
+          type: "boolean"
+          description: "Filter persons by active status"
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                image:
+                  type: "string"
+                  format: "byte"
+                video_url:
+                  type: "string"
+                person_id:
+                  type: "integer"
+                active:
+                  type: "boolean"
+        401:
+          description: "Unauthorized"
 securityDefinitions:
   Bearer:
     type: "apiKey"

@@ -14,7 +14,6 @@ class CPerson(IPerson):
         if cpf_cnpj:
             person = self.get_person_by_cpf(cpf_cnpj)
             if person:
-                print(person)
                 return [self.create_object_json(person)]
             else:
                 return []
