@@ -30,3 +30,11 @@ class CAdvertising(IAdvertising):
                 "message": "was not entered into the database",
                 "error": create['error']
             }), 409
+
+    def get_with_filter_advertising(self, filter_param):
+
+        if filter_param.get('person_id'):
+            pass
+
+        if filter_param.get("start_date") and filter_param.get('end_date'):
+            pass

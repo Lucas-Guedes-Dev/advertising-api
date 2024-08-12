@@ -21,7 +21,9 @@ class IAdvertising:
                 image=advertising_dict.get('image'),
                 video_url=advertising_dict.get('video_url'),
                 person_id=advertising_dict.get('person_id'),
-                active=advertising_dict.get('active')
+                active=advertising_dict.get('active'),
+                date_end=advertising_dict.get('date_end'),
+                date_start=advertising_dict.get('date_start'),
             )
 
             db.session.add(new_advertising)

@@ -3,7 +3,7 @@ info:
   title: "API de Propagandas"
   description: "API de documentação para propagandas"
   version: "1.0.0"
-host: "10.42.5.90:5050"
+host: "10.10.3.212:5050"
 schemes:
   - "http"
 tags:
@@ -314,6 +314,10 @@ paths:
               image:
                 type: "string"
                 format: "byte"
+              date_start:
+                type: "string"
+              date_end:
+                type: "string"
               video_url:
                 type: "string"
               person_id:
