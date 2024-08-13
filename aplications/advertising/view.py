@@ -13,10 +13,8 @@ class Advertising(MethodView):
     @jwt_required()
     def get(self):
         params = request.args.to_dict()
-        
-        response = self.controller.get_with_filter_advertising(params)
-        
-        return {}, 200
+
+        return self.controller.get_with_filter_advertising(params)
 
     @jwt_required()
     def post(self):

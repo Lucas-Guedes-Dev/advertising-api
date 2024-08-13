@@ -16,4 +16,4 @@ class Advertising(db.Model):
     active = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
-        return f'<Advertising {self.username}>'
+        return f'<Advertising {self.id}>'

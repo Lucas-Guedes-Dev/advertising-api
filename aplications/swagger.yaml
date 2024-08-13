@@ -3,7 +3,7 @@ info:
   title: "API de Propagandas"
   description: "API de documentação para propagandas"
   version: "1.0.0"
-host: "10.10.3.212:5050"
+host: "192.168.146.132:5050"
 schemes:
   - "http"
 tags:
@@ -350,6 +350,14 @@ paths:
           name: "person_id"
           type: "integer"
           description: "Filter persons by ID"
+        - in: "query"
+          name: "date_start"
+          type: "string"
+          description: "Filter persons by period"
+        - in: "query"
+          name: "date_end"
+          type: "string"
+          description: "Filter persons by period"
         - in: "query"
           name: "active"
           type: "boolean"

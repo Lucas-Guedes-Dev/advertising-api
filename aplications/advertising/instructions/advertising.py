@@ -1,6 +1,7 @@
 from aplications import db
 from aplications.advertising.models import Advertising
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import and_
 
 
 class IAdvertising:
@@ -9,6 +10,21 @@ class IAdvertising:
 
     def get_advertising_by_id(self, id):
         return Advertising.query.filter_by(id=id).first()
+
+    def get_advertising_by_person_id(self, person_param_id, active=True):
+        return Advertising.query.filter(
+            and_(
+                Advertising.person_id == person_param_id,
+                Advertising.active == active
+            ))
+
+    def get_period_advertising(self, init_date, end_date, active=True):
+        return Advertising.query.filter(
+            and_(
+                Advertising.date_start <= init_date,
+                Advertising.date_end >= end_date,
+                Advertising.active == active
+            ))
 
     def get_all_advertising(self):
         return Advertising.query.all()
