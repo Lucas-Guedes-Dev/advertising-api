@@ -72,11 +72,14 @@ class CAdvertising(IAdvertising):
         if advertising.date_end:
             end_date = advertising.date_end.strftime('%Y-%m-%d %H:%M:%S')
 
-        print(base64.decodebytes(advertising.image))
+        image = ''
+        if advertising.image:
+            base64_encoded = base64.b64encode(advertising.image)
+            image = base64_encoded.decode('utf-8')
 
         return {
             'name': advertising.name,
-            'image': advertising.image,
+            'image': image,
             'date_start': start_date,
             'date_end': end_date,
             'description': advertising.description,
