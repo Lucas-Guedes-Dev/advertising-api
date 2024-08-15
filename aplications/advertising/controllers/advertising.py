@@ -49,6 +49,9 @@ class CAdvertising(IAdvertising):
                 filter_param["start_date"], filter_param["end_date"], active
             )
 
+        if filter_param.get('id'):
+            ads = [self.get_advertising_by_id(filter_param['id'])]
+
         if filter_param.get('start_date') and not filter_param.get('end_date'):
             return jsonify({'message': 'preencha o campo de data final'}), 401
 
@@ -78,11 +81,13 @@ class CAdvertising(IAdvertising):
             image = base64_encoded.decode('utf-8')
 
         return {
+            'id': advertising.id,
             'name': advertising.name,
             'image': image,
             'date_start': start_date,
             'date_end': end_date,
             'description': advertising.description,
+            'video_url': advertising.video_url,
             'active': advertising.active,
             'person_id': advertising.person_id,
         }

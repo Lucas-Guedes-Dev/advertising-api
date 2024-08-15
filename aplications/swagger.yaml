@@ -3,7 +3,7 @@ info:
   title: "API de Propagandas"
   description: "API de documentação para propagandas"
   version: "1.0.0"
-host: "192.168.146.132:5050"
+host: "10.10.3.212:5050"
 schemes:
   - "http"
 tags:
